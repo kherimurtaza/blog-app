@@ -7,6 +7,7 @@ import Project from "./pages/Project.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer.jsx";
 const App = () => {
   return (
     <Router>
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/project" element={<Project />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
