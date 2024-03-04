@@ -30,7 +30,7 @@ export const signUp = async (req, res, next) => {
 //sign-In
 export const signIn = async (req, res, next) => {
   const { email, password } = req.body;
-  if (!email || !password || email == "" || password == "") {
+  if (!email || !password || email === "" || password === "") {
     next(errorHandler(400, "All fields are required"));
   }
   try {
@@ -44,14 +44,14 @@ export const signIn = async (req, res, next) => {
     }
     const token = jwt.sign(
       {
-        Id: validUser._id,
+        id: validUser._id,
       },
       process.env.JWT_SECRET
     );
     const { password: pass, ...rest } = validUser._doc;
     res
       .status(200)
-      .cookie("access token", token, {
+      .cookie("access_token", token, {
         httpOnly: true,
       })
       .json(rest);
