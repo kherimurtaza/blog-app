@@ -16,12 +16,12 @@ export const signUp = async (req, res, next) => {
     next(errorHandler(400, "All fields are required"));
   }
 
-  const hashPassword = bcryptjs.hashSync(password, 10);
+  const hashedPassword = bcryptjs.hashSync(password, 10);
 
-  const newUser = new User({ username, email, password: hashPassword });
+  const newUser = new User({ username, email, password: hashedPassword });
   try {
     await newUser.save();
-    res.json({ message: "Signup Successful" });
+    res.json("Signup Successful");
   } catch (error) {
     next(error);
   }
@@ -30,6 +30,7 @@ export const signUp = async (req, res, next) => {
 //sign-In
 export const signIn = async (req, res, next) => {
   const { email, password } = req.body;
+
   if (!email || !password || email === "" || password === "") {
     next(errorHandler(400, "All fields are required"));
   }
